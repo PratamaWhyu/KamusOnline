@@ -131,13 +131,15 @@
       Promise.all([
         fetch('data/MinnaNoNihongo.json').then((response) => response.json()),
         fetch('data/Pertanian.json').then((response) => response.json()),
+        fetch('data/soumatomen3.json').then((response) => response.json()),
         fetch('data/PelayananPelanggan.json').then((response) => response.json()),
         fetch('data/PersiapanMakanandanMinuman.json').then((response) => response.json())])
-        .then(([minnaData, pertanianData, pelayananpelangganData, persiapanmakanandanminumanData]) => {
+        .then(([minnaData, pertanianData, soumatomen3Data, pelayananpelangganData, persiapanmakanandanminumanData]) => {
           // Gabungkan data dari kedua JSON, menyimpan info asal file
           kosakata = {
             minnanonihongo: { data: minnaData, file: 'MinnaNoNihongo.json' },
             pertanian: { data: pertanianData, file: 'Pertanian.json' },
+            soumatomen3: { data: soumatomen3Data, file: 'soumatomen3.json' },
             pelayananpelanggan: { data: pelayananpelangganData, file: 'Restoran-PelayananPelanggan.json' },
             persiapanmakanandanminuman: { data: persiapanmakanandanminumanData, file: 'Restoran-PersiapanMakanandanMinuman.json' },
           };
