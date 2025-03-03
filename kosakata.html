@@ -125,23 +125,25 @@
       </div>
     </section>
     <script>
-      let kosakata = {}; // Menyimpan semua data dari kedua JSON
+      let kosakata = {}; // Menyimpan semua data dari JSON
 
-      // Ambil data dari kedua file JSON
+      // Ambil data dari beberapa file JSON
       Promise.all([
         fetch('data/MinnaNoNihongo.json').then((response) => response.json()),
         fetch('data/Pertanian.json').then((response) => response.json()),
         fetch('data/soumatomen3.json').then((response) => response.json()),
         fetch('data/PelayananPelanggan.json').then((response) => response.json()),
-        fetch('data/PersiapanMakanandanMinuman.json').then((response) => response.json())])
-        .then(([minnaData, pertanianData, soumatomen3Data, pelayananpelangganData, persiapanmakanandanminumanData]) => {
-          // Gabungkan data dari kedua JSON, menyimpan info asal file
+        fetch('data/PersiapanMakanandanMinuman.json').then((response) => response.json()),
+        fetch('data/strukturBertingkat.json').then((response) => response.json()),
+      ])
+        .then(([minnaData, pertanianData, soumatomen3Data, pelayananpelangganData, persiapanmakanandanminumanData, strukturBertingkatData]) => {
           kosakata = {
             minnanonihongo: { data: minnaData, file: 'MinnaNoNihongo.json' },
             pertanian: { data: pertanianData, file: 'Pertanian.json' },
             soumatomen3: { data: soumatomen3Data, file: 'soumatomen3.json' },
             pelayananpelanggan: { data: pelayananpelangganData, file: 'Restoran-PelayananPelanggan.json' },
             persiapanmakanandanminuman: { data: persiapanmakanandanminumanData, file: 'Restoran-PersiapanMakanandanMinuman.json' },
+            strukturBertingkat: { data: strukturBertingkatData, file: 'StrukturBertingkat.json' },
           };
         })
         .catch((error) => console.error('Gagal memuat data:', error));
@@ -181,20 +183,27 @@
 
         let results = [];
 
-        // Looping melalui semua file dan kategori dalam JSON (baik dari Minna no Nihongo maupun Pertanian)
+        // Looping melalui semua file dalam JSON
         Object.keys(kosakata).forEach((file) => {
           const data = kosakata[file].data;
 
-          // Looping melalui semua kategori dalam setiap file
+          // Cek apakah data bertingkat atau tidak
           Object.keys(data).forEach((kategori) => {
             if (Array.isArray(data[kategori])) {
+              // Data biasa
               data[kategori].forEach((item) => {
-                // Pencarian berdasarkan item dalam kategori
                 if (item.kana?.includes(searchTerm) || item.kanji?.includes(searchTerm) || item.arti?.toLowerCase().includes(searchTerm)) {
-                  results.push({
-                    ...item,
-                    kategori,
-                    file: kosakata[file].file.split('.json')[0], // Menghapus ekstensi .json
+                  results.push({ ...item, kategori, file: kosakata[file].file.split('.json')[0] });
+                }
+              });
+            } else {
+              // Data bertingkat (Minggu -> Hari)
+              Object.keys(data[kategori]).forEach((subKategori) => {
+                if (Array.isArray(data[kategori][subKategori])) {
+                  data[kategori][subKategori].forEach((item) => {
+                    if (item.kana?.includes(searchTerm) || item.kanji?.includes(searchTerm) || item.arti?.toLowerCase().includes(searchTerm)) {
+                      results.push({ ...item, kategori: `${kategori} - ${subKategori}`, file: kosakata[file].file.split('.json')[0] });
+                    }
                   });
                 }
               });
@@ -208,8 +217,8 @@
             const div = document.createElement('div');
             div.classList.add('p-4', 'border-b', 'border-gray-300', 'bg-white', 'rounded-lg', 'shadow-md', 'mb-2');
             div.innerHTML = `<strong class="text-gray-900">${item.kana} (${item.kanji})</strong> 
-                 <p class="text-gray-900">${item.arti}</p>
-                 <span class="text-blue-600 text-sm">${item.kategori} - ${item.file}</span>`;
+           <p class="text-gray-900">${item.arti}</p>
+           <span class="text-blue-600 text-sm">${item.kategori} - ${item.file}</span>`;
             resultContainer.appendChild(div);
           });
           resultContainer.classList.remove('hidden');
@@ -218,7 +227,8 @@
           resultContainer.classList.remove('hidden');
         }
       }
-      //responsive mobile
+
+      // Responsif mobile
       document.getElementById('mobile-menu-button').addEventListener('click', function () {
         var menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
