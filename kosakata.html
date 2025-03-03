@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pencarian Kosakata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- NAVBAR-->
+    <nav class="bg-gray-800">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-center">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-button"
+              type="button"
+              class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="absolute -inset-0.5"></span>
+              <span class="sr-only">Open main menu</span>
+              <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <svg class="hidden size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div class="flex flex-1 items-center justify-center">
+            <div class="hidden sm:block">
+              <div class="flex space-x-4">
+                <a href="index.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+                <a href="kosakata.html" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page" aria-current="page">Kosakata</a>
+                <a href="polakalimat.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pola Kalimat</a>
+                <a href="quiz.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Quiz</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="space-y-1 px-2 pt-2 pb-3">
+          <a href="index.html" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+          <a href="kosakata.html" class="block rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Kosakata</a>
+          <a href="polakalimat.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pola Kalimat</a>
+          <a href="quiz.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Quiz</a>
+        </div>
+      </div>
+    </nav>
+    <!--END NAVBAR-->
+
+    <section class="py-12 bg-gray-200 text-gray-100 sm:py-12 lg:py-16">
+      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- Form Pencarian -->
+        <form id="search-form" class="max-w-2xl mx-auto bg-gray p-6 shadow-md rounded-lg">
+          <div class="relative flex items-center">
+            <!-- Input Pencarian -->
+            <input type="search" id="default-search" class="block w-full px-5 py-3 text-lg text-gray-900 border border-gray-300 rounded-lg" placeholder="Cari kata..." required />
+
+            <!-- Tombol X untuk Clear Input -->
+            <button type="button" id="clear-button" class="absolute right-20 bg-red-600 text-white-700 px-3 py-2 rounded-md hidden">X</button>
+
+            <!-- Tombol Cari -->
+            <button type="submit" class="absolute right-2 bg-blue-600 text-white px-4 py-2 rounded-md">Cari</button>
+          </div>
+        </form>
+        <!-- Hasil Pencarian (disembunyikan) -->
+        <div id="search-results" class="max-w-2xl mx-auto mt-4 bg-white p-6 shadow-md rounded-lg hidden"></div>
+
+        <div class="max-w-xl mx-auto text-center xl:max-w-2xl">
+          <h2 class="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl mb-6 p-6">Pilih Kosakata Yang Kamu Mau!</h2>
+          <h6 class="mb-4 text-gray-900">Baru ada Minna No Nihongo doang nih hahaha, yang lainnya nyusul ya</h6>
+        </div>
+        <div class="grid max-w-4xl lg:max-w-6xl grid-cols-1 mx-auto mt-8 text-center gap-y-4 sm:gap-x-8 sm:grid-cols-2 lg:grid-cols-3 sm:mt-12 lg:mt-20">
+          <!-- Realtime Collaboration -->
+          <a href="mnn1.html" class="relative block">
+            <div class="absolute -inset-1">
+              <div class="w-full h-full rotate-180 opacity-30 blur-lg filter bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
+            </div>
+            <div class="relative overflow-hidden bg-white shadow-md rounded-xl h-full flex items-center justify-center p-9 text-center">
+              <h3 class="text-2xl font-bold text-gray-900">Minna No Nihongo 1</h3>
+            </div>
+          </a>
+
+          <!-- History of Edits -->
+          <a href="mnn2.html" class="block overflow-hidden bg-white shadow-md rounded-xl flex items-center justify-center p-9 text-center">
+            <h3 class="text-2xl font-bold text-gray-900">Minna No Nihongo 2</h3>
+          </a>
+
+          <!-- Integrations -->
+          <a href="restoran.html" class="relative block">
+            <div class="absolute -inset-1">
+              <div class="w-full h-full rotate-180 opacity-30 blur-lg filter bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
+            </div>
+            <div class="relative overflow-hidden bg-white shadow-md rounded-xl h-full flex items-center justify-center p-9 text-center">
+              <h3 class="text-2xl font-bold text-gray-900">Restoran</h3>
+            </div>
+          </a>
+
+          <!-- Publish Webpage Online -->
+          <a href="pertanian.html" class="block overflow-hidden bg-white shadow-md rounded-xl flex items-center justify-center p-9 text-center">
+            <h3 class="text-2xl font-bold text-gray-900">Pertanian</h3>
+          </a>
+
+          <!-- Forms and Data Collection -->
+          <a href="#.html" class="relative block">
+            <div class="absolute -inset-1">
+              <div class="w-full h-full rotate-180 opacity-30 blur-lg filter bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
+            </div>
+            <div class="relative overflow-hidden bg-white shadow-md rounded-xl h-full flex items-center justify-center p-9 text-center">
+              <h3 class="text-2xl font-bold text-gray-900">Coming soon</h3>
+            </div>
+          </a>
+
+          <!-- Custom Domains -->
+          <a href="#.html" class="block overflow-hidden bg-white shadow-md rounded-xl flex items-center justify-center p-9 text-center">
+            <h3 class="text-2xl font-bold text-gray-900">Coming soon</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      let kosakata = {}; // Menyimpan semua data dari file JSON
+
+      // Ambil data dari kedua file JSON
+      Promise.all([fetch('data/minnanonihongo.json').then((response) => response.json()), 
+                    fetch('data/pertanian.json').then((response) => response.json()),
+                    fetch('data/pelayananpelanggan.json').then((response) => response.json()),
+                    fetch('data/persiapanmakanandanminuman.json').then((response) => response.json())
+                    ])
+        .then(([minnaData, pertanianData,PelayananPelangganData,persiapanmakanandanminumanData]) => {
+          // Gabungkan data dari kedua JSON, menyimpan info asal file
+          kosakata = {
+            minnanonihongo: { data: minnaData, file: 'minnanonihongo.json' },
+            pertanian: { data: pertanianData, file: 'pertanian.json' },
+            PelayananPelanggan: { data: PelayananPelangganData, file: 'Restoran.json' },
+            persiapanmakanandanminuman: { data: persiapanmakanandanminumanData, file: 'Restoran.json' },
+          };
+        })
+        .catch((error) => console.error('Gagal memuat data:', error));
+
+      const searchInput = document.getElementById('default-search');
+      const clearButton = document.getElementById('clear-button');
+      const resultContainer = document.getElementById('search-results');
+
+      document.getElementById('search-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        performSearch();
+      });
+
+      searchInput.addEventListener('input', function () {
+        if (searchInput.value.trim() !== '') {
+          clearButton.classList.remove('hidden');
+        } else {
+          clearButton.classList.add('hidden');
+          resultContainer.classList.add('hidden');
+        }
+      });
+
+      clearButton.addEventListener('click', function () {
+        searchInput.value = '';
+        clearButton.classList.add('hidden');
+        resultContainer.classList.add('hidden');
+      });
+
+      function performSearch() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        resultContainer.innerHTML = ''; // Bersihkan hasil sebelumnya
+
+        if (searchTerm === '') {
+          resultContainer.classList.add('hidden');
+          return;
+        }
+
+        let results = [];
+
+        // Looping melalui semua file dan kategori dalam JSON (baik dari Minna no Nihongo maupun Pertanian)
+        Object.keys(kosakata).forEach((file) => {
+          const data = kosakata[file].data;
+
+          // Looping melalui semua kategori dalam setiap file
+          Object.keys(data).forEach((kategori) => {
+            if (Array.isArray(data[kategori])) {
+              data[kategori].forEach((item) => {
+                // Pencarian berdasarkan item dalam kategori
+                if (item.kana?.includes(searchTerm) || item.kanji?.includes(searchTerm) || item.arti?.toLowerCase().includes(searchTerm)) {
+                  results.push({
+                    ...item,
+                    kategori,
+                    file: kosakata[file].file.split('.json')[0], // Menghapus ekstensi .json
+                  });
+                }
+              });
+            }
+          });
+        });
+
+        // Menampilkan hasil pencarian
+        if (results.length > 0) {
+          results.forEach((item) => {
+            const div = document.createElement('div');
+            div.classList.add('p-4', 'border-b', 'border-gray-300', 'bg-white', 'rounded-lg', 'shadow-md', 'mb-2');
+            div.innerHTML = `<strong class="text-gray-900">${item.kana} (${item.kanji})</strong> 
+                 <p class="text-gray-900">${item.arti}</p>
+                 <span class="text-blue-600 text-sm">${item.kategori} - ${item.file}</span>`;
+            resultContainer.appendChild(div);
+          });
+          resultContainer.classList.remove('hidden');
+        } else {
+          resultContainer.innerHTML = "<p class='text-red-500'>Tidak ada hasil ditemukan.</p>";
+          resultContainer.classList.remove('hidden');
+        }
+      }
+      //responsive mobile
+      document.getElementById('mobile-menu-button').addEventListener('click', function () {
+        var menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
