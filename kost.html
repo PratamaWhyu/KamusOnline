@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vocabulary</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input { width: 80%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px; margin-left: 5px; cursor: pointer; }
+        .result { border-bottom: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Search Vocabulary</h2>
+    <input type="text" id="search" placeholder="Cari kana, kanji, atau arti...">
+    <button onclick="searchVocabulary()">Cari</button>
+    <button onclick="clearSearch()">✖</button>
+    <div id="results"></div>
+    
+    <script>
+        let jsonData;
+
+        // Load JSON data
+        fetch('soumatomen3.json') // Sesuaikan dengan path file JSON
+            .then(response => response.json())
+            .then(data => {
+                jsonData = data;
+                displayResults(getAllWords(jsonData));
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+
+        function getAllWords(data) {
+            let words = [];
+            for (const minggu in data) {
+                for (const hari in data[minggu]) {
+                    words = words.concat(data[minggu][hari]);
+                }
+            }
+            return words;
+        }
+
+        function searchVocabulary() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const results = getAllWords(jsonData).filter(item =>
+                item.kana.toLowerCase().includes(query) ||
+                item.kanji.toLowerCase().includes(query) ||
+                item.arti.toLowerCase().includes(query)
+            );
+            displayResults(results);
+        }
+
+        function clearSearch() {
+            document.getElementById('search').value = "";
+            displayResults(getAllWords(jsonData));
+        }
+
+        function displayResults(results) {
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = "";
+            results.forEach(item => {
+                resultDiv.innerHTML += `<div class='result'><b>${item.kana}</b> (${item.kanji}) - ${item.arti}</div>`;
+            });
+        }
+    </script>
+</body>
+</html>

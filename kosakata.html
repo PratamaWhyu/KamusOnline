@@ -103,8 +103,8 @@
           </a>
 
           <!-- Publish Webpage Online -->
-          <a href="pertanian.html" class="block overflow-hidden bg-white shadow-md rounded-xl flex items-center justify-center p-9 text-center">
-            <h3 class="text-2xl font-bold text-gray-900">Coming Soon</h3>
+          <a href="soumatomen3.html" class="block overflow-hidden bg-white shadow-md rounded-xl flex items-center justify-center p-9 text-center">
+            <h3 class="text-2xl font-bold text-gray-900">SoumatomeN3</h3>
           </a>
 
           <!-- Forms and Data Collection -->
@@ -134,16 +134,14 @@
         fetch('data/soumatomen3.json').then((response) => response.json()),
         fetch('data/PelayananPelanggan.json').then((response) => response.json()),
         fetch('data/PersiapanMakanandanMinuman.json').then((response) => response.json()),
-        fetch('data/strukturBertingkat.json').then((response) => response.json()),
       ])
         .then(([minnaData, pertanianData, soumatomen3Data, pelayananpelangganData, persiapanmakanandanminumanData, strukturBertingkatData]) => {
           kosakata = {
             minnanonihongo: { data: minnaData, file: 'MinnaNoNihongo.json' },
             pertanian: { data: pertanianData, file: 'Pertanian.json' },
-            soumatomen3: { data: soumatomen3Data, file: 'soumatomen3.json' },
+            soumatomen3: { data: soumatomen3Data, file: 'SoumatomeN3.json' },
             pelayananpelanggan: { data: pelayananpelangganData, file: 'Restoran-PelayananPelanggan.json' },
             persiapanmakanandanminuman: { data: persiapanmakanandanminumanData, file: 'Restoran-PersiapanMakanandanMinuman.json' },
-            strukturBertingkat: { data: strukturBertingkatData, file: 'StrukturBertingkat.json' },
           };
         })
         .catch((error) => console.error('Gagal memuat data:', error));
